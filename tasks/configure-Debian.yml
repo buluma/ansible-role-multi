@@ -42,8 +42,8 @@
     groups: "wheel"
     state: present
   with_items:
-     - testuser1
-     - testuser2
+    - testuser1
+    - testuser2
 
 - name: "loop through list from a variable"
   debug:
@@ -57,5 +57,5 @@
     groups: "{{ item.groups }}"
     state: present
   with_items:
-     - { name: testuser1, uid: 1002, groups: "wheel, staff" }
-     - { name: testuser2, uid: 1003, groups: staff }
+    - { name: testuser1, uid: 1002, groups: "wheel, staff" }
+    - { name: testuser2, uid: 1003, groups: staff }
