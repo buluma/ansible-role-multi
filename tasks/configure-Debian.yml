@@ -45,32 +45,6 @@
     - iptables-persistent
   tags: iptables
 
-- name: set_fact destfile=/etc/iptables/rules.v4
-  action: set_fact destfile=/etc/iptables/rules.v4
-  when: is_docker_container is not defined
-  tags: iptables
-
-- name: restart iptables
-  become: yes
-  service: name=iptables enabled=yes state=restarted
-
-- name: Allow related and established connections
-  ansible.builtin.iptables:
-    chain: INPUT
-    ctstate: ESTABLISHED,RELATED
-    jump: ACCEPT
-  become: yes
-
-- name: Allow new incoming SYN packets on TCP port 22 (SSH)
-  ansible.builtin.iptables:
-    chain: INPUT
-    protocol: tcp
-    destination_port: 22
-    ctstate: NEW
-    syn: match
-    jump: ACCEPT
-    comment: Accept new SSH connections.
-
 - name: Collect only selected facts
   ansible.builtin.setup:
     filter:
