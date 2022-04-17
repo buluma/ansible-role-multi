@@ -17,25 +17,3 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
-
-# merges lists into synchronized list
-- name: item.0 returns from the 'a' list, item.1 returns from the '1' list
-  debug:
-    msg: "{{ item.0 }} and {{ item.1 }}"
-  with_together:
-    - ['a', 'b', 'c', 'd']
-    - [1, 2, 3, 4]
-
-# In memory inventory
-- name: Add host to group 'just_created' with variable foo=42
-  add_host:
-    name: '{{ ip_from_ec2 }}'
-    groups: just_created
-    foo: 42
-
-- name: Add host to multiple groups
-  add_host:
-    hostname: '{{ new_ip }}'
-    groups:
-      - group1
-      - group2

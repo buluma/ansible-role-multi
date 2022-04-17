@@ -13,17 +13,3 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
-
-# Basic usage
-- name: Basic usage
-  debug:
-    msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
-
-- name: Example how to set default value if the variable is not defined
-  debug:
-    msg: "'{{ lookup('env', 'USR') | default('nobody', True) }}' is the user."
-
-# read lines from command
-- name: We could read the file directly, but this shows output from command
-  debug: msg="{{ item }} is an output line from running cat on /etc/motd"
-  with_lines: cat /etc/motd

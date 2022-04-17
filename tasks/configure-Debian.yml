@@ -13,36 +13,3 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
-
-# list of items
-- name: "loop through list"
-  debug:
-    msg: "An item: {{ item }}"
-  with_items:
-    - 1
-    - 2
-    - 3
-
-- name: Ensure group "wheel" exists
-  ansible.builtin.group:
-    name: wheel
-    state: present
-
-- name: add several users
-  user:
-    name: "{{ item }}"
-    groups: "wheel"
-    state: present
-  with_items:
-    - testuser1
-    - testuser2
-
-- name: more complex items to add several users
-  user:
-    name: "{{ item.name }}"
-    uid: "{{ item.uid }}"
-    groups: "{{ item.groups }}"
-    state: present
-  with_items:
-    - { name: testuser1, uid: 1002, groups: "wheel, staff" }
-    - { name: testuser2, uid: 1003, groups: staff }
