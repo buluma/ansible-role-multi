@@ -25,3 +25,32 @@
 - name: create random but idempotent password
   set_fact:
     password: "{{ lookup('password', '/dev/null', seed=inventory_hostname) }}"
+
+# TODO: Add when
+- name: Set authorized key for user ubuntu copying it from current user
+  ansible.posix.authorized_key:
+    user: ubuntu
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+- name: Gather information about active zones
+  ansible.posix.firewalld_info:
+    active_zones: yes
+
+- name: Gather information about specific zones
+  ansible.posix.firewalld_info:
+    zones:
+      - public
+      - external
+      - internal
+
+# Selinux
+- name: Enable SELinux
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing
+
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  ansible.posix.selinux:
+    policy: targeted
+    state: permissive
