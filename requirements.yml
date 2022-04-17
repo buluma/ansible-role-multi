@@ -3,7 +3,6 @@ roles:
   - name: buluma.bootstrap
   - name: buluma.apache
   - name: buluma.cron
-  - name: community.aws
 collections:
   - name: ansible.posix
   - name: community.aws
