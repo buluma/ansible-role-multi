@@ -1,0 +1,33 @@
+# Lists all s3 buckets
+- community.aws.aws_s3_bucket_info:
+  register: result
+
+# Retrieve detailed bucket information
+- community.aws.aws_s3_bucket_info:
+    # Show only buckets with name matching
+    name_filter: your.testing
+    # Choose facts to retrieve
+    bucket_facts:
+      # bucket_accelerate_configuration: true
+      bucket_acl: true
+      bucket_cors: true
+      bucket_encryption: true
+      # bucket_lifecycle_configuration: true
+      bucket_location: true
+      # bucket_logging: true
+      # bucket_notification_configuration: true
+      # bucket_ownership_controls: true
+      # bucket_policy: true
+      # bucket_policy_status: true
+      # bucket_replication: true
+      # bucket_request_payment: true
+      # bucket_tagging: true
+      # bucket_website: true
+      # public_access_block: true
+    transform_location: true
+    register: result
+
+# Print out result
+- name: List buckets
+  ansible.builtin.debug:
+    msg: "{{ result['buckets'] }}"
