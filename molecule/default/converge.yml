@@ -10,6 +10,13 @@
     apache_vhosts:
       - servername: "example.com"
         documentroot: "/var/www/vhosts/example_com"
+    users:
+    alice:
+      name: Alice Appleworth
+      telephone: 123-456-7890
+    bob:
+      name: Bob Bananarama
+      telephone: 987-654-3210
 
   pre_tasks:
     - name: Update apt cache.

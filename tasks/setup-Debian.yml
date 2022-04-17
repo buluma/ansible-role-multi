@@ -17,7 +17,27 @@
     var: hostvars[inventory_hostname]
     verbosity: 4
 
-- example: >
-  To enable, add this to your ansible.cfg file in the defaults block
-    [defaults]
-    callback_whitelist = ansible.posix.profile_tasks
+# with predefined vars
+- name: Print phone records
+  debug:
+    msg: "User {{ item.key }} is {{ item.value.name }} ({{ item.value.telephone }})"
+  loop: "{{ lookup('dict', users) }}"
+# with inline dictionary
+- name: show dictionary
+  debug:
+    msg: "{{item.key}}: {{item.value}}"
+  with_dict: {a: 1, b: 2, c: 3}
+# Items from loop can be used in when: statements
+- name: set_fact when alice in key
+  set_fact:
+    alice_exists: true
+  loop: "{{ lookup('dict', users) }}"
+  when: "'alice' in item.key"
+
+# merges lists into synchronized list
+- name: item.0 returns from the 'a' list, item.1 returns from the '1' list
+  debug:
+    msg: "{{ item.0 }} and {{ item.1 }}"
+  with_together:
+    - ['a', 'b', 'c', 'd']
+    - [1, 2, 3, 4]
