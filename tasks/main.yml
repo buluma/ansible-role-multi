@@ -16,7 +16,7 @@
 
 # Setup/install.
 - name: Install.
-- include_tasks: "setup-{{ ansible_os_family }}.yml"
+  include_tasks: "setup-{{ ansible_os_family }}.yml"
 
 # Configure.
 - name: Configure.
