@@ -35,9 +35,3 @@
 
 - name: show remote_tmp setting for shell (sh) plugin
   debug: msg={{q("config", "remote_tmp", plugin_type="shell", plugin_name="sh")}}
-
-# This uses a variable as this changes per distribution.
-- name: Remove the apache package
-  ansible.builtin.package:
-    name: "{{ apache }}"
-    state: absent
