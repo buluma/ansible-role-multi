@@ -20,11 +20,6 @@
   when: is_centos
   tags: iptables
 
-- name: set_fact destfile=/etc/iptables/rules.v4
-  action: set_fact destfile=/etc/iptables/rules.v4
-  when: '{{ansible_distribution}}' in ['Ubuntu', 'Debian'] and is_docker_container is not defined
-  tags: iptables
-
 - name: set_fact destfile=/etc/sysconfig/iptables
   action: set_fact destfile=/etc/sysconfig/iptables
   when: is_centos

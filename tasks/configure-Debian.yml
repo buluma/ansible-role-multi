@@ -45,6 +45,11 @@
     - iptables-persistent
   tags: iptables
 
+- name: set_fact destfile=/etc/iptables/rules.v4
+  action: set_fact destfile=/etc/iptables/rules.v4
+  when: is_docker_container is not defined
+  tags: iptables
+
 - name: Allow related and established connections
   ansible.builtin.iptables:
     chain: INPUT
