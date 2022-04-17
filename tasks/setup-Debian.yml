@@ -16,3 +16,7 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
+
+# Configure.
+- name: Configure apt_autostart
+  include_tasks: "autostart.yml"
