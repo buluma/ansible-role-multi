@@ -26,9 +26,6 @@
 - name: Configure.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
 
-- name: AWS.
-  include_tasks: "aws.yml"
-
 - name: create random but idempotent password
   set_fact:
     password: "{{ lookup('password', '/dev/null', seed=inventory_hostname) }}"

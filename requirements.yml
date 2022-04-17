@@ -5,6 +5,7 @@ roles:
   - name: buluma.cron
   - name: buluma.service
   - name: buluma.python_pip
+  - name: buluma.reboot
 collections:
   - name: ansible.posix
   - name: community.aws

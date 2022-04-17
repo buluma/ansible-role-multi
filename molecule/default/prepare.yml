@@ -9,5 +9,6 @@
     - role: buluma.cron
     - role: buluma.service
     - role: buluma.python_pip
+    - role: buluma.reboot
     # - role: buluma.gitlab
     # - role: buluma.apache
