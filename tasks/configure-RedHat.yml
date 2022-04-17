@@ -30,3 +30,12 @@
 
 - name: show remote_tmp setting for shell (sh) plugin
   debug: msg={{q("config", "remote_tmp", plugin_type="shell", plugin_name="sh")}}
+
+# main
+- name: Install iptables package (CentOS)
+  action: yum pkg=iptables
+  tags: iptables
+
+- name: set_fact destfile=/etc/sysconfig/iptables
+  action: set_fact destfile=/etc/sysconfig/iptables
+  tags: iptables
