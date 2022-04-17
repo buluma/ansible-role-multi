@@ -1,3 +1,4 @@
+---
 # Lists all s3 buckets
 - name: Lists all s3 buckets
   community.aws.aws_s3_bucket_info:
