@@ -2,8 +2,5 @@
 roles:
   - name: buluma.bootstrap
   - name: buluma.apache
-  - name: ansible.posix.profile_roles
-  - name: ansible.posix.skippy
-  - name: ansible.posix.timer
 collections:
   - name: ansible.posix
