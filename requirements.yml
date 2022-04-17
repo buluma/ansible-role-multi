@@ -5,3 +5,4 @@ roles:
   - name: buluma.cron
 collections:
   - name: ansible.posix
+  - name: community.aws

@@ -8,3 +8,5 @@
     - role: buluma.bootstrap
     - role: buluma.cron
     # - role: buluma.apache
+  collections:
+    - name: community.aws
