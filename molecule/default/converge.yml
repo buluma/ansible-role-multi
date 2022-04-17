@@ -28,16 +28,4 @@
 
   roles:
     # - role: ansible-role-multi  # Main
-    - role: buluma.service
-      service_list:
-        - name: jenkins.service
-          description: Simple Service
-          start_command: "{{ service_test_command }} 3600"
-          state: started
-          enabled: yes
-        - name: stopped-jenkins.service
-          description: Simple jenkins.service
-          start_command: "{{ service_test_command }} 3601"
-          state: stopped
-          enabled: no
-    - role: buluma.jenkins
+    - role: buluma.gitlab

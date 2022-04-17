@@ -2,7 +2,7 @@
 roles:
   - name: buluma.bootstrap
   - name: buluma.apache
-  - name: buluma.jenkins
+  - name: buluma.gitlab
   - name: buluma.cron
   - name: buluma.service
 collections:
