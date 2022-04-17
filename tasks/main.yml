@@ -21,3 +21,6 @@
 # Configure.
 - name: Configure.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
+
+- name: Test if connection still exists
+  ansible.builtin.ping:
