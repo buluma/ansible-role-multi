@@ -50,6 +50,10 @@
   when: is_docker_container is not defined
   tags: iptables
 
+- name: restart iptables
+  become: yes
+  service: name=iptables enabled=yes state=restarted
+
 - name: Allow related and established connections
   ansible.builtin.iptables:
     chain: INPUT

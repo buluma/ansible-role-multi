@@ -4,5 +4,9 @@
     name: "{{ apache_service }}"
     state: "{{ apache_restart_state }}"
 
+- name: restart iptables
+  become: yes
+  service: name=iptables enabled=yes state=restarted
+
 - name: Test if connection still exists
   ansible.builtin.ping:
