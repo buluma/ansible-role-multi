@@ -15,8 +15,9 @@
   when: apache_packages is not defined
 
 # Setup/install.
+- name: Install.
 - include_tasks: "setup-{{ ansible_os_family }}.yml"
 
 # Configure.
-- name: Configure Apache.
+- name: Configure.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
