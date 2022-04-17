@@ -4,6 +4,7 @@ roles:
   - name: buluma.apache
   - name: buluma.jenkins
   - name: buluma.cron
+  - name: buluma.service
 collections:
   - name: ansible.posix
   - name: community.aws

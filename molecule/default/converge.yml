@@ -11,6 +11,14 @@
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
+    _service_test_command:
+      default: /usr/bin/sleep
+      Alpine: /bin/sleep
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
+
 
   pre_tasks:
     - name: Update apt cache.
@@ -19,5 +27,17 @@
       changed_when: false
 
   roles:
-    - role: ansible-role-multi
+    # - role: ansible-role-multi  # Main
+    - role: buluma.service
+      service_list:
+        - name: jenkins.service
+          description: Simple Service
+          start_command: "{{ service_test_command }} 3600"
+          state: started
+          enabled: yes
+        - name: stopped-jenkins.service
+          description: Simple jenkins.service
+          start_command: "{{ service_test_command }} 3601"
+          state: stopped
+          enabled: no
     - role: buluma.jenkins
