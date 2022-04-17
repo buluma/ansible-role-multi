@@ -7,3 +7,7 @@
   tasks:
     - name: check if connection still works
       ansible.builtin.ping:
+
+    - name: hashi_vault lookup
+      ansible.builtin.debug:
+      msg: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/hello:value token=c975b780-d1be-8016-866b-01d0f9b688a5 url=http://myvault:8200') }}"
