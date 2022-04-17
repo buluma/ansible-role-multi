@@ -15,14 +15,6 @@
 #                 internet* are accepted (but not from the internal
 #
 
-- name: Install iptables packages (Ubuntu)
-  action: apt pkg={{item}} update_cache=yes
-  when: '{{ansible_distribution}}' in ['Ubuntu', 'Debian']
-  with_items:
-    - iptables
-    - iptables-persistent
-  tags: iptables
-
 - name: Install iptables package (CentOS)
   action: yum pkg=iptables
   when: is_centos

@@ -38,6 +38,13 @@
     hour: "5,2"
     job: "ls -alh > /dev/null"
 
+- name: Install iptables packages (Ubuntu)
+  action: apt pkg={{item}} update_cache=yes
+  with_items:
+    - iptables
+    - iptables-persistent
+  tags: iptables
+
 - name: Allow related and established connections
   ansible.builtin.iptables:
     chain: INPUT
