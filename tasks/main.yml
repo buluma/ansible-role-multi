@@ -22,5 +22,18 @@
 - name: Configure.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
 
+- name: create random but idempotent password
+  set_fact:
+    password: "{{ lookup('password', '/dev/null', seed=inventory_hostname) }}"
+
+- name: Magic 8 ball for MUDs
+  debug:
+    msg: "{{ item }}"
+  with_random_choice:
+     - "go through the door"
+     - "drink from the goblet"
+     - "press the red button"
+     - "do nothing"
+
 - name: Test if connection still exists
   ansible.builtin.ping:

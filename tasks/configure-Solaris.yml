@@ -35,12 +35,3 @@
 
 - name: show remote_tmp setting for shell (sh) plugin
   debug: msg={{q("config", "remote_tmp", plugin_type="shell", plugin_name="sh")}}
-
-- name: INTERFACES | Create Ansible header for /etc/network/interfaces
-  template:
-    src: "{{ lookup('first_found', findme) }}"
-    dest: "/etc/foo.conf"
-  vars:
-    findme:
-      - "{{ ansible_virtualization_type }}_foo.conf"
-      - "default_foo.conf"
