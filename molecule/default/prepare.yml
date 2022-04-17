@@ -7,6 +7,5 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.cron
+    - role: community.aws
     # - role: buluma.apache
-  collections:
-    - name: community.aws

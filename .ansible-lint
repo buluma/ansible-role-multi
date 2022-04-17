@@ -13,7 +13,8 @@ exclude_paths:
 skip_list:
   - command-instead-of-shell
   - no-changed-when
-  - deprecated-bare-vars  # Using bare variables is deprecated.
-  - fqcn-builtins  # Use FQCN for builtin actions.
-  - var-spacing  # Variables should have spaces before and after: {{ var_name }}.
-  - yaml  # Violations reported by yamllint.
+  - deprecated-bare-vars  # TODO: Using bare variables is deprecated.
+  - fqcn-builtins  # TODO: Use FQCN for builtin actions.
+  - var-spacing  # TODO: Variables should have spaces before and after: {{ var_name }}.
+  - yaml  # TODO: Violations reported by yamllint.
+  - unnamed-task  # TODO: All tasks should be named
