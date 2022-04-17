@@ -8,5 +8,5 @@
     - role: buluma.bootstrap
     - role: buluma.cron
     - role: buluma.service
-    - role: buluma.gitlab
+    # - role: buluma.gitlab
     # - role: buluma.apache
