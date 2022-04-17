@@ -1,9 +1,11 @@
 # Lists all s3 buckets
-- community.aws.aws_s3_bucket_info:
+- name: Lists all s3 buckets
+  community.aws.aws_s3_bucket_info:
   register: result
 
 # Retrieve detailed bucket information
-- community.aws.aws_s3_bucket_info:
+- name: Retrieve detailed bucket information
+  community.aws.aws_s3_bucket_info:
     # Show only buckets with name matching
     name_filter: your.testing
     # Choose facts to retrieve
