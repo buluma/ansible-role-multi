@@ -59,3 +59,5 @@ apache_restart_state: restarted
 # Apache package state; use `present` to make sure it's installed, or `latest`
 # if you want to upgrade or switch versions using a new repo.
 apache_packages_state: present
+
+ip_from_ec2: "10.0.0.1"
