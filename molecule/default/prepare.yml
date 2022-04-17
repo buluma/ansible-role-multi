@@ -5,5 +5,8 @@
   gather_facts: no
 
   roles:
+    - role: ansible.posix.profile_roles
+    - role: ansible.posix.skippy
+    - role: ansible.posix.timer
     - role: buluma.bootstrap
     - role: buluma.apache

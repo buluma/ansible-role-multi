@@ -20,3 +20,8 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
+
+- example: >
+  To enable, add this to your ansible.cfg file in the defaults block
+    [defaults]
+    callback_whitelist = ansible.posix.profile_tasks
