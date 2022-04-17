@@ -17,7 +17,7 @@
 
 - name: Install iptables packages (Ubuntu)
   action: apt pkg={{item}} update_cache=yes
-  when: is_debian_or_ubuntu
+  when: '{{ansible_distribution}}' in ['Ubuntu', 'Debian']
   with_items:
     - iptables
     - iptables-persistent
@@ -30,7 +30,7 @@
 
 - name: set_fact destfile=/etc/iptables/rules.v4
   action: set_fact destfile=/etc/iptables/rules.v4
-  when: is_debian_or_ubuntu and is_docker_container is not defined
+  when: '{{ansible_distribution}}' in ['Ubuntu', 'Debian'] and is_docker_container is not defined
   tags: iptables
 
 - name: set_fact destfile=/etc/sysconfig/iptables
