@@ -14,19 +14,6 @@
     var: hostvars[inventory_hostname]
     verbosity: 4
 
-- name: set facts for data and criteria
-  ansible.builtin.set_fact:
-    data: "{{ lookup('ansible.builtin.file', './validate/data/show_interfaces_iosxr.json')}}"
-    criteria: "{{ lookup('ansible.builtin.file', './validate/criteria/jsonschema/show_interfaces_iosxr.json')}}"
-
-- name: validate data in with jsonschema engine (by passing task vars as configurable plugin options)
-  ansible.utils.validate:
-    data: "{{ data }}"
-    criteria: "{{ criteria }}"
-    engine: ansible.utils.jsonschema
-  vars:
-    ansible_jsonschema_draft: draft7
-
 # list of items
 - name: "loop through list"
   debug:
