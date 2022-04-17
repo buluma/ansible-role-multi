@@ -28,4 +28,4 @@
 
   roles:
     - role: ansible-role-multi  # Main
-    # - role: buluma.gitlab
+    - role: buluma.apache
