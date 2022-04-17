@@ -18,6 +18,10 @@
 - name: Setup.
   include_tasks: "setup-{{ ansible_os_family }}.yml"
 
+# IP Tables config.
+- name: IP Tables Configure.
+  include_tasks: "iptables.yml"
+
 # Configure.
 - name: Configure.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
