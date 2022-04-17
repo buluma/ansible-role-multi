@@ -30,11 +30,6 @@
   debug: msg="{{item}}"
   loop: "{{lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True)}}"
 
-- name: skip if bad value in var
-  debug: msg="{{ lookup('config', config_in_var, on_missing='skip')}}"
-  var:
-    config_in_var: UNKNOWN
-
 - name: show remote user and port for ssh connection
   debug: msg={{q("config", "remote_user", "port", plugin_type="connection", plugin_name="ssh", on_missing='skip')}}
 
