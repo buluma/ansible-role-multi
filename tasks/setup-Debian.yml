@@ -16,19 +16,3 @@
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
     verbosity: 4
-
-# Set ip forwarding on in /proc and verify token value with the sysctl command
-- name: Set ip forwarding on in /proc and verify token value with the sysctl command
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: '1'
-    sysctl_set: yes
-
-# Set ip forwarding on in /proc and in the sysctl file and reload if necessary
-- name: Set ip forwarding on in /proc and in the sysctl file and reload if necessary
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: '1'
-    sysctl_set: yes
-    state: present
-    reload: yes
