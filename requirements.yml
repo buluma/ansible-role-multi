@@ -2,9 +2,9 @@
 roles:
   - name: buluma.bootstrap
   - name: buluma.apache
-  - name: buluma.gitlab
   - name: buluma.cron
   - name: buluma.service
+  - name: buluma.python_pip
 collections:
   - name: ansible.posix
   - name: community.aws

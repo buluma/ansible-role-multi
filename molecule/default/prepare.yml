@@ -8,5 +8,6 @@
     - role: buluma.bootstrap
     - role: buluma.cron
     - role: buluma.service
+    - role: buluma.python_pip
     # - role: buluma.gitlab
     # - role: buluma.apache
