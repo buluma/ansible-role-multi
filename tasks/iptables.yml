@@ -28,23 +28,28 @@
   when: is_centos
   tags: iptables
 
-- action: set_fact destfile=/etc/iptables/rules.v4
+- name: set_fact destfile=/etc/iptables/rules.v4
+  action: set_fact destfile=/etc/iptables/rules.v4
   when: is_debian_or_ubuntu and is_docker_container is not defined
   tags: iptables
 
-- action: set_fact destfile=/etc/sysconfig/iptables
+- name: set_fact destfile=/etc/sysconfig/iptables
+  action: set_fact destfile=/etc/sysconfig/iptables
   when: is_centos
   tags: iptables
 
-- action: set_fact default_policy=ACCEPT
+- name: set_fact default_policy=ACCEPT
+  action: set_fact default_policy=ACCEPT
   when: 'default_accept is defined and default_accept.lower() in ["1", "true"]'
   tags: iptables
 
-- action: set_fact default_policy=DROP
+- name: set_fact default_policy=DROP
+  action: set_fact default_policy=DROP
   when: default_policy is not defined
   tags: iptables
 
-- action: template dest={{ destfile }} src=common/templates/etc/iptables.d/rules.v4.j2 owner=root group=root mode=0644
+- name: template dest
+  action: template dest={{ destfile }} src=common/templates/etc/iptables.d/rules.v4.j2 owner=root group=root mode=0644
   when: is_docker_container is not defined
   notify: restart iptables
   tags: iptables
