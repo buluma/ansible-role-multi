@@ -17,28 +17,6 @@
     var: hostvars[inventory_hostname]
     verbosity: 4
 
-# Set vm.swappiness to 5 in /etc/sysctl.conf
-- name: Set vm.swappiness to 5 in /etc/sysctl.conf
-  ansible.posix.sysctl:
-    name: vm.swappiness
-    value: '5'
-    state: present
-
-# Remove kernel.panic entry from /etc/sysctl.conf
-- name: Remove kernel.panic entry from /etc/sysctl.conf
-  ansible.posix.sysctl:
-    name: kernel.panic
-    state: absent
-    sysctl_file: /etc/sysctl.conf
-
-# Set kernel.panic to 3 in /tmp/test_sysctl.conf
-- name: Set kernel.panic to 3 in /tmp/test_sysctl.conf
-  ansible.posix.sysctl:
-    name: kernel.panic
-    value: '3'
-    sysctl_file: /tmp/test_sysctl.conf
-    reload: no
-
 # Set ip forwarding on in /proc and verify token value with the sysctl command
 - name: Set ip forwarding on in /proc and verify token value with the sysctl command
   ansible.posix.sysctl:
