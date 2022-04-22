@@ -7,6 +7,7 @@
   roles:
     # - role: buluma.bootstrap
     - role: buluma.systemd
+    - role: buluma.setuptools 
     # - role: buluma.cron
     # - role: buluma.service
     # - role: buluma.python_pip
