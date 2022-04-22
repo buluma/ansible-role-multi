@@ -25,18 +25,8 @@
   debug: msg="{{item}}"
   loop: "{{lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True)}}"
 
-- name: show remote user and port for ssh connection
-  debug: msg={{q("config", "remote_user", "port", plugin_type="connection", plugin_name="ssh", on_missing='skip')}}
-
 - name: show remote_tmp setting for shell (sh) plugin
   debug: msg={{q("config", "remote_tmp", plugin_type="shell", plugin_name="sh")}}
-
-- name: Ensure a job that runs at 2 and 5 exists. Creates an entry like "0 5,2 * * ls -alh > /dev/null"
-  ansible.builtin.cron:
-    name: "check dirs"
-    minute: "0"
-    hour: "5,2"
-    job: "ls -alh > /dev/null"
 
 - name: Install iptables packages (Ubuntu)
   action: apt pkg={{item}} update_cache=yes
@@ -56,18 +46,3 @@
   ansible.builtin.package:
     name: "{{ users_requirements }}"
     state: present
-
-- name: manage cron permission
-  ansible.builtin.template:
-    src: cron.allow.j2
-    dest: /etc/cron.allow
-    mode: "0644"
-  when:
-    - users_cron_allow | bool
-
-- name: check existence of /etc/cron.allow
-  ansible.builtin.file:
-    path: /etc/cron.allow
-    state: absent
-  when:
-    - not users_cron_allow | bool

@@ -25,9 +25,6 @@
   debug: msg="{{item}}"
   loop: "{{lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True)}}"
 
-- name: show remote user and port for ssh connection
-  debug: msg={{q("config", "remote_user", "port", plugin_type="connection", plugin_name="ssh", on_missing='skip')}}
-
 - name: show remote_tmp setting for shell (sh) plugin
   debug: msg={{q("config", "remote_tmp", plugin_type="shell", plugin_name="sh")}}
 
