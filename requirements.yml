@@ -4,6 +4,7 @@ roles:
   - name: buluma.apache
   - name: buluma.cron
   - name: buluma.service
+  - name: buluma.systemd
   - name: buluma.python_pip
   - name: buluma.reboot
 collections:
