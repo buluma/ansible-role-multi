@@ -2,6 +2,7 @@
 - name: Converge
   hosts: all
   become: true
+  strategy: free
 
   vars:
     users:
