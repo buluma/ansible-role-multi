@@ -7,7 +7,7 @@ roles:
   - name: buluma.systemd
   - name: buluma.python_pip
   - name: buluma.reboot
-  - name: buluma.setuptools
+  - name: buluma.core_dependencies
 collections:
   - name: ansible.posix
   - name: community.aws
