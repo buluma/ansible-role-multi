@@ -14,14 +14,24 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 - name: Converge
   hosts: all
   become: true
+  strategy: free
 
   vars:
-    apache_listen_port_ssl: 443
-    apache_create_vhosts: true
-    apache_vhosts_filename: "vhosts.conf"
-    apache_vhosts:
-      - servername: "example.com"
-        documentroot: "/var/www/vhosts/example_com"
+    users:
+    alice:
+      name: Alice Appleworth
+      telephone: 123-456-7890
+    bob:
+      name: Bob Bananarama
+      telephone: 987-654-3210
+    _service_test_command:
+      default: /usr/bin/sleep
+      Alpine: /bin/sleep
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
+
 
   pre_tasks:
     - name: Update apt cache.
@@ -30,7 +40,28 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       changed_when: false
 
   roles:
-    - role: buluma.apache
+    - role: buluma.multi  # Main
+    # - role: buluma.apache
+```
+
+The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+```yaml
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    # - role: buluma.bootstrap
+    - role: buluma.systemd
+    - role: buluma.core_dependencies
+    # - role: buluma.cron
+    # - role: buluma.service
+    # - role: buluma.python_pip
+    # - role: buluma.reboot
+    # - role: buluma.gitlab
+    # - role: buluma.apache
 ```
 
 
@@ -99,16 +130,68 @@ apache_restart_state: restarted
 # Apache package state; use `present` to make sure it's installed, or `latest`
 # if you want to upgrade or switch versions using a new repo.
 apache_packages_state: present
+
+ip_from_ec2: "10.0.0.1"
+
+new_ip: "10.0.0.3"
+
+new_port: 8081
+
+apt_autostart_state: enabled
+
+# defaults file for reboot
+
+# Some operating systems can determine if a reboot is required. This
+# parameter can be set to always reboot.
+reboot_always: yes
+
+# How long to wait before sending a reboot.
+reboot_delay: 5
+
+# Number of seconds to wait before checking if the machine is up.
+reboot_up_delay: 10
+
+# You can specify a message for rebooting, easier for auditing.
+reboot_message: "Ansible role buluma.reboot initiated a reboot."
+
+
+# defaults file for users
+
+# The location to store ssh keys for user
+users_ssh_key_directory: ssh_keys
+
+# The default shell if not overwritten.
+users_shell: /bin/bash
+
+# manage cron permissions via /etc/cron.allow
+users_cron_allow: yes
+
+# should homedirectories be created?
+users_create_home: yes
 ```
 
 ## [Requirements](#requirements)
 
 - pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-multi/blob/main/requirements.txt).
 
+## [Status of used roles](#status-of-requirements)
+
+The following roles are used to prepare a system. You can prepare your system in another way.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
+|[buluma.apache](https://galaxy.ansible.com/buluma/apache)|[![Build Status GitHub](https://github.com/buluma/ansible-role-apache/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-apache/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-apache/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-apache)|
+|[buluma.cron](https://galaxy.ansible.com/buluma/cron)|[![Build Status GitHub](https://github.com/buluma/ansible-role-cron/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-cron/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-cron/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-cron)|
+|[buluma.service](https://galaxy.ansible.com/buluma/service)|[![Build Status GitHub](https://github.com/buluma/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-service/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-service)|
+|[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-systemd)|
+|[buluma.python_pip](https://galaxy.ansible.com/buluma/python_pip)|[![Build Status GitHub](https://github.com/buluma/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-python_pip/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-python_pip)|
+|[buluma.reboot](https://galaxy.ansible.com/buluma/reboot)|[![Build Status GitHub](https://github.com/buluma/ansible-role-reboot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-reboot/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-reboot/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-reboot)|
+|[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Build Status GitHub](https://github.com/buluma/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.co.ke/) for further information.
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
 
@@ -122,7 +205,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |---------|----|
 |el|all|
 |fedora|all|
-|amazon|all|
 |debian|all|
 |ubuntu|all|
 
