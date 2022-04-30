@@ -2,12 +2,12 @@
 - name: prepare
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   roles:
-    # - role: buluma.bootstrap
-    - role: buluma.systemd
-    - role: buluma.core_dependencies
+    - role: buluma.bootstrap
+    # - role: buluma.systemd
+    # - role: buluma.core_dependencies
     # - role: buluma.cron
     # - role: buluma.service
     # - role: buluma.python_pip
