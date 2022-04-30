@@ -3,6 +3,7 @@
   hosts: all
   become: true
   strategy: free
+  gather_facts: yes
 
   vars:
     users:
