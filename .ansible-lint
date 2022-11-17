@@ -18,3 +18,7 @@ skip_list:
   - var-spacing  # TODO: Variables should have spaces before and after: {{ var_name }}.
   - yaml  # TODO: Violations reported by yamllint.
   - unnamed-task  # TODO: All tasks should be named
+
+warn_list:  # or 'skip_list' to silence them completely
+  - experimental  # all rules tagged as experimental
+  - name[casing]  # Rule for checking task and play names.

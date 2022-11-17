@@ -1,5 +1,5 @@
 ---
-image: "buluma/github-action-molecule:4.0.6"
+image: "buluma/github-action-molecule:4.0.9"
 
 services:
   - docker:dind
@@ -12,6 +12,7 @@ molecule:
   stage: build
   allow_failure: true
   script:
+    - whoami
     - image=${image} tag=${tag} molecule test
   retry: 1
   parallel:
@@ -27,7 +28,7 @@ molecule:
       - image: "debian-systemd"
         tag: "latest"
       - image: "debian-systemd"
-        tag: "bookworm"
+        tag: "buster"
       - image: "docker-ubuntu-systemd"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
@@ -56,7 +57,7 @@ testing:
       - image: "debian-systemd"
         tag: "latest"
       - image: "debian-systemd"
-        tag: "bookworm"
+        tag: "buster"
       - image: "docker-ubuntu-systemd"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
@@ -89,7 +90,7 @@ role_testing:
       - image: "debian-systemd"
         tag: "latest"
       - image: "debian-systemd"
-        tag: "bookworm"
+        tag: "buster"
       - image: "docker-ubuntu-systemd"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
