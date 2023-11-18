@@ -3,22 +3,17 @@
 # Ansible managed
 #
 exclude_paths:
-  - ./molecule/default/prepare.yml
-  - ./molecule/default/converge.yml
-  - ./molecule/default/verify.yml
-  - ./molecule/default/collections.yml
-  - ./.tox
-  - ./.cache
+  - molecule/default/prepare.yml
+  - molecule/default/converge.yml
+  - molecule/default/verify.yml
+  - molecule/default/collections.yml
+  - .tox
+  - .cache
+  - .github
+  - requirements.yml
 
 skip_list:
-  - command-instead-of-shell
-  - no-changed-when
-  - deprecated-bare-vars  # TODO: Using bare variables is deprecated.
-  - fqcn-builtins  # TODO: Use FQCN for builtin actions.
-  - var-spacing  # TODO: Variables should have spaces before and after: {{ var_name }}.
-  - yaml  # TODO: Violations reported by yamllint.
-  - unnamed-task  # TODO: All tasks should be named
+  - yaml[truthy]
 
-warn_list:  # or 'skip_list' to silence them completely
-  - experimental  # all rules tagged as experimental
-  - name[casing]  # Rule for checking task and play names.
+enable_list:
+  - name[prefix]
