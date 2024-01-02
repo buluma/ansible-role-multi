@@ -1,10 +1,10 @@
-# [Ansible role multi](#multi)
+# Ansible role [multi](https://galaxy.ansible.com/ui/standalone/roles/buluma/multi/documentation)
 
 Apache 2.x for Linux.
 
-|GitHub|GitLab|Downloads|Version|Issues|Pull Requests|
-|------|------|-------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-multi/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-multi/actions/workflows/molecule.yml)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-multi/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-multi)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/buluma/multi)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/pulls/)|
+|GitHub|Version|Issues|Pull Requests|Downloads|
+|------|-------|------|-------------|---------|
+|[![github](https://github.com/buluma/ansible-role-multi/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-multi/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-multi.svg)](https://github.com/buluma/ansible-role-multi/pulls/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/multi)](https://galaxy.ansible.com/ui/standalone/roles/buluma/multi/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -183,16 +183,16 @@ users_create_home: yes
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
-| Requirement | GitHub | GitLab |
+| Requirement | GitHub | Version |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
-|[buluma.apache](https://galaxy.ansible.com/buluma/apache)|[![Build Status GitHub](https://github.com/buluma/ansible-role-apache/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-apache/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-apache/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-apache)|
-|[buluma.cron](https://galaxy.ansible.com/buluma/cron)|[![Build Status GitHub](https://github.com/buluma/ansible-role-cron/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-cron/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-cron/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-cron)|
-|[buluma.service](https://galaxy.ansible.com/buluma/service)|[![Build Status GitHub](https://github.com/buluma/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-service/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-service/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-service)|
-|[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Build Status GitHub](https://github.com/buluma/ansible-role-systemd/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-systemd/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-systemd)|
-|[buluma.python_pip](https://galaxy.ansible.com/buluma/python_pip)|[![Build Status GitHub](https://github.com/buluma/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-python_pip/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-python_pip)|
-|[buluma.reboot](https://galaxy.ansible.com/buluma/reboot)|[![Build Status GitHub](https://github.com/buluma/ansible-role-reboot/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-reboot/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-reboot/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-reboot)|
-|[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Build Status GitHub](https://github.com/buluma/ansible-role-core_dependencies/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-core_dependencies/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-core_dependencies)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Ansible Molecule](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-bootstrap.svg)](https://github.com/shadowwalker/ansible-role-bootstrap)|
+|[buluma.apache](https://galaxy.ansible.com/buluma/apache)|[![Ansible Molecule](https://github.com/buluma/ansible-role-apache/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-apache/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-apache.svg)](https://github.com/shadowwalker/ansible-role-apache)|
+|[buluma.cron](https://galaxy.ansible.com/buluma/cron)|[![Ansible Molecule](https://github.com/buluma/ansible-role-cron/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-cron/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-cron.svg)](https://github.com/shadowwalker/ansible-role-cron)|
+|[buluma.service](https://galaxy.ansible.com/buluma/service)|[![Ansible Molecule](https://github.com/buluma/ansible-role-service/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-service/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-service.svg)](https://github.com/shadowwalker/ansible-role-service)|
+|[buluma.systemd](https://galaxy.ansible.com/buluma/systemd)|[![Ansible Molecule](https://github.com/buluma/ansible-role-systemd/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-systemd/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-systemd.svg)](https://github.com/shadowwalker/ansible-role-systemd)|
+|[buluma.python_pip](https://galaxy.ansible.com/buluma/python_pip)|[![Ansible Molecule](https://github.com/buluma/ansible-role-python_pip/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-python_pip/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-python_pip.svg)](https://github.com/shadowwalker/ansible-role-python_pip)|
+|[buluma.reboot](https://galaxy.ansible.com/buluma/reboot)|[![Ansible Molecule](https://github.com/buluma/ansible-role-reboot/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-reboot/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-reboot.svg)](https://github.com/shadowwalker/ansible-role-reboot)|
+|[buluma.core_dependencies](https://galaxy.ansible.com/buluma/core_dependencies)|[![Ansible Molecule](https://github.com/buluma/ansible-role-core_dependencies/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-core_dependencies/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-core_dependencies.svg)](https://github.com/shadowwalker/ansible-role-core_dependencies)|
 
 ## [Context](#context)
 
@@ -227,14 +227,9 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [License](#license)
 
-[Apache-2.0](https://github.com/buluma/ansible-role-multi/blob/master/LICENSE).
+[Apache-2.0](https://github.com/buluma/ansible-role-multi/blob/master/LICENSE)
 
 ## [Author Information](#author-information)
 
-[buluma](https://buluma.github.io/)
+[Shadow Walker](https://buluma.github.io/)
 
-Please consider [sponsoring me](https://github.com/sponsors/buluma).
-
-### [Special Thanks](#special-thanks)
-
-Template inspired by [Robert de Bock](https://github.com/robertdebock)
