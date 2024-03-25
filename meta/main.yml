@@ -26,6 +26,9 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
+    - name: Archlinux
+      versions:
+        - all
   galaxy_tags:
     - web
     - apache

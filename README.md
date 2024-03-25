@@ -52,8 +52,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: prepare
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: false
 
   roles:
     - role: buluma.bootstrap
@@ -212,6 +212,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
 |[Kali](https://hub.docker.com/r/buluma/kali)|all|
 |[opensuse](https://hub.docker.com/r/buluma/opensuse)|all|
+|[Archlinux](https://hub.docker.com/r/buluma/archlinux)|all|
 
 The minimum version of Ansible required is 2.4, tests have been done to:
 
