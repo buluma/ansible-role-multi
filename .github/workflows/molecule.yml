@@ -73,7 +73,7 @@ jobs:
           - image: "docker-ubuntu-systemd"
             tag: "noble"
           - image: "docker-molecule-images"
-            tag: "noble"
+            tag: "lunar"
     steps:
       - name: Checkout Role
         uses: actions/checkout@v4
