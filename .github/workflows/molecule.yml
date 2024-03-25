@@ -57,7 +57,7 @@ jobs:
           - image: "docker-molecule-images"
             tag: "rawhide"
           - image: "docker-molecule-images"
-            tag: "latest"
+            tag: "buster"
           - image: "docker-molecule-images"
             tag: "bullseye"
           - image: "docker-molecule-images"
