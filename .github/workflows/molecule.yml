@@ -63,10 +63,8 @@ jobs:
           - image: "docker-molecule-images"
             tag: "lunar"
           - image: "docker-molecule-images"
-            tag: "noble"
-          - image: "kali"
             tag: "kalilinux"
-          - image: "docker-opensuse-systemd"
+          - image: "docker-molecule-images"
             tag: "opensuse"
     steps:
       - name: Checkout Role
