@@ -208,9 +208,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/buluma/enterpriselinux)|all|
 |[Fedora](https://hub.docker.com/r/buluma/fedora)|all|
-|[Debian](https://hub.docker.com/r/buluma/debian)|all|
 |[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
 
 The minimum version of Ansible required is 2.4, tests have been done to:
