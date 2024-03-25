@@ -74,6 +74,20 @@ jobs:
             tag: "noble"
           - image: "docker-molecule-images"
             tag: "lunar"
+          - image: "docker-molecule-images"
+            tag: "focal"
+          - image: "docker-molecule-images"
+            tag: "bionic"
+          - image: "docker-molecule-images"
+            tag: "jammy"
+          - image: "docker-molecule-images"
+            tag: "fedora37"
+          - image: "docker-molecule-images"
+            tag: "fedora38"
+          - image: "docker-molecule-images"
+            tag: "fedora39"
+          - image: "docker-molecule-images"
+            tag: "fedora40"
     steps:
       - name: Checkout Role
         uses: actions/checkout@v4
