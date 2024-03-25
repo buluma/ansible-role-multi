@@ -20,6 +20,12 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
+    - name: Kali
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
   galaxy_tags:
     - web
     - apache

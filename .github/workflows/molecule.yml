@@ -57,8 +57,6 @@ jobs:
           - image: "docker-molecule-images"
             tag: "rawhide"
           - image: "docker-molecule-images"
-            tag: "latest"
-          - image: "docker-molecule-images"
             tag: "focal"
           - image: "docker-molecule-images"
             tag: "bionic"
@@ -66,6 +64,10 @@ jobs:
             tag: "lunar"
           - image: "docker-molecule-images"
             tag: "noble"
+          - image: "kali"
+            tag: "kalilinux"
+          - image: "docker-opensuse-systemd"
+            tag: "opensuse"
     steps:
       - name: Checkout Role
         uses: actions/checkout@v4
