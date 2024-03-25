@@ -47,13 +47,13 @@ jobs:
       matrix:
         config:
           - image: "docker-molecule-images"
-            tag: "37"
+            tag: "fedora37"
           - image: "docker-molecule-images"
-            tag: "38"
+            tag: "fedora38"
           - image: "docker-molecule-images"
-            tag: "39"
+            tag: "fedora39"
           - image: "docker-molecule-images"
-            tag: "40"
+            tag: "fedora40"
           - image: "docker-molecule-images"
             tag: "rawhide"
           - image: "docker-molecule-images"
