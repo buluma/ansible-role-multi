@@ -26,11 +26,3 @@ provisioner:
   name: ansible
 verifier:
   name: ansible
-scenario:
-  test_sequence:
-    - destroy
-    - create
-    - converge
-    # - idempotence
-    - lint
-    - verify

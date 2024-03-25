@@ -68,6 +68,8 @@ jobs:
             tag: "opensuse"
           - image: "docker-molecule-images"
             tag: "archlinux"
+          - image: "docker-molecule-images"
+            tag: "alpine-openrc"
     steps:
       - name: Checkout Role
         uses: actions/checkout@v4
