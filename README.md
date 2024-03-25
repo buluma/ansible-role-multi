@@ -50,7 +50,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: true
   gather_facts: false
@@ -209,6 +209,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |container|tags|
 |---------|----|
 |[Fedora](https://hub.docker.com/r/buluma/fedora)|all|
+|[Debian](https://hub.docker.com/r/buluma/debian)|all|
 |[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
 |[Kali](https://hub.docker.com/r/buluma/kali)|all|
 |[opensuse](https://hub.docker.com/r/buluma/opensuse)|all|
