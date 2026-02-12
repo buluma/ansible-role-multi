@@ -29,5 +29,5 @@
       changed_when: false
 
   roles:
-    - role: ansible-role-multi  # Main
+    - role: buluma.multi  # Main
     # - role: buluma.apache
