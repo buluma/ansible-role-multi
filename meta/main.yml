@@ -1,16 +1,11 @@
 ---
-dependencies: []
-
 galaxy_info:
-  role_name: multi
   author: buluma
-  description: Apache 2.x for Linux.
+  role_name: multi
+  description: 'Apache 2.x for Linux.'
   license: Apache-2.0
   min_ansible_version: 2.4
   platforms:
-    # - name: EL
-    #   versions:
-    #     - all
     - name: Fedora
       versions:
         - all
@@ -38,5 +33,4 @@ galaxy_info:
     - webserver
     - html
     - httpd
-
-allow_duplicates: true
+dependencies: []
