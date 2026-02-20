@@ -121,12 +121,11 @@ apache_mods_enabled:
   - rewrite.load
   - ssl.load
 apache_mods_disabled: []
-
 # Set initial apache state. Recommended values: `started` or `stopped`
 apache_state: started
 
 # Set initial apache service status. Recommended values: `yes` or `no`
-apache_enabled: yes
+apache_enabled: true
 
 # Set apache state when configuration changes are made. Recommended values:
 # `restarted` or `reloaded`
@@ -148,7 +147,7 @@ apt_autostart_state: enabled
 
 # Some operating systems can determine if a reboot is required. This
 # parameter can be set to always reboot.
-reboot_always: yes
+reboot_always: true
 
 # How long to wait before sending a reboot.
 reboot_delay: 5
@@ -159,7 +158,6 @@ reboot_up_delay: 10
 # You can specify a message for rebooting, easier for auditing.
 reboot_message: "Ansible role buluma.reboot initiated a reboot."
 
-
 # defaults file for users
 
 # The location to store ssh keys for user
@@ -169,10 +167,10 @@ users_ssh_key_directory: ssh_keys
 users_shell: /bin/bash
 
 # manage cron permissions via /etc/cron.allow
-users_cron_allow: yes
+users_cron_allow: true
 
 # should homedirectories be created?
-users_create_home: yes
+users_create_home: true
 ```
 
 ## [Requirements](#requirements)
