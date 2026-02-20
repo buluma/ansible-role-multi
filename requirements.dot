@@ -1,0 +1,23 @@
+digraph PhiloDilemma {
+  label = "Michael Buluma" ;
+  overlap=false
+  {
+    "multi" [fillcolor=yellow style=filled penwidth=3]
+    "buluma.bootstrap" [fillcolor=green style=filled]
+    "buluma.apache" [fillcolor=green style=filled]
+    "buluma.cron" [fillcolor=green style=filled]
+    "buluma.service" [fillcolor=green style=filled]
+    "buluma.systemd" [fillcolor=green style=filled]
+    "buluma.python_pip" [fillcolor=green style=filled]
+    "buluma.reboot" [fillcolor=green style=filled]
+    "buluma.core_dependencies" [fillcolor=green style=filled]
+  }
+  "multi" -> "buluma.bootstrap"
+  "multi" -> "buluma.apache"
+  "multi" -> "buluma.cron"
+  "multi" -> "buluma.service"
+  "multi" -> "buluma.systemd"
+  "multi" -> "buluma.python_pip"
+  "multi" -> "buluma.reboot"
+  "multi" -> "buluma.core_dependencies"
+}
