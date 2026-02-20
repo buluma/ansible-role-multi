@@ -2,10 +2,9 @@
 # Include variables and define needed variables.
 
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
-
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 - name: Include variables for Amazon Linux.
-  include_vars: "AmazonLinux.yml"
+  ansible.builtin.include_vars: "AmazonLinux.yml"
   when:
     - ansible_distribution == "Amazon"
     - ansible_distribution_major_version == "NA"
@@ -17,18 +16,13 @@
 
 # Setup/install.
 - name: Setup.
-  include_tasks: "setup-{{ ansible_os_family }}.yml"
-
-# IP Tables config.
+  ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
 - name: IP Tables Configure.
-  include_tasks: "iptables.yml"
-
-# Configure.
+  ansible.builtin.include_tasks: "iptables.yml"
 - name: Configure.
-  include_tasks: "configure-{{ ansible_os_family }}.yml"
-
-- name: create random but idempotent password
-  set_fact:
+  ansible.builtin.include_tasks: "configure-{{ ansible_os_family }}.yml"
+- name: Create random but idempotent password
+  ansible.builtin.set_fact:
     password: "{{ lookup('password', '/dev/null', seed=inventory_hostname) }}"
 
 - name: Print the gateway for each host when defined

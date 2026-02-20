@@ -2,9 +2,9 @@
 galaxy_info:
   author: buluma
   role_name: multi
-  description: 'Apache 2.x for Linux.'
+  description: "Apache 2.x for Linux."
   license: Apache-2.0
-  min_ansible_version: '2.4
+  min_ansible_version: "2.4"
   platforms:
     - name: Fedora
       versions:

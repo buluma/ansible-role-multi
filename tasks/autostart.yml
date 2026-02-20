@@ -3,10 +3,12 @@
 
 - name: import assert.yml
   ansible.builtin.import_tasks: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: manage automatic service management
+  when:
+    - ansible_pkg_mgr == "apt"
   block:
     - name: disable automatic service management on installation
       ansible.builtin.copy:
@@ -22,5 +24,3 @@
         state: absent
       when:
         - apt_autostart_state == "enabled"
-  when:
-    - ansible_pkg_mgr == "apt"
