@@ -21,7 +21,7 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
-    - name: Archlinux
+    - name: ArchLinux
       versions:
         - all
     - name: Alpine
