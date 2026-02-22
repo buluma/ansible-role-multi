@@ -210,7 +210,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
 |[Kali](https://hub.docker.com/r/buluma/kalilinux)|all|
 |[opensuse](https://hub.docker.com/r/buluma/opensuse)|all|
-|[Archlinux](https://hub.docker.com/r/buluma/archlinux)|all|
+|[ArchLinux](https://hub.docker.com/r/buluma/archlinux)|all|
 |[Alpine](https://hub.docker.com/r/buluma/alpine)|all|
 
 The minimum version of Ansible required is 2.4, tests have been done on:
