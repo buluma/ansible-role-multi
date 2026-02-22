@@ -3,12 +3,10 @@
   ansible.builtin.debug:
     msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
   when: ansible_default_ipv4.gateway is defined
-
 - name: setup-Solaris | Print return information from the previous task
   ansible.builtin.debug:
     var: result
     verbosity: 2
-
 - name: setup-Solaris | Display all variables/facts known for a host
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]

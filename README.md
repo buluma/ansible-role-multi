@@ -11,60 +11,46 @@ Apache 2.x for Linux.
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-multi/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
----
-- name: Converge
+- become: true
+  gather_facts: true
   hosts: all
-  become: true
+  name: Converge
+  pre_tasks:
+  - apt: update_cache=yes cache_valid_time=600
+    changed_when: false
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  roles:
+  - role: buluma.multi
   strategy: free
-  gather_facts: yes
-
   vars:
-    users:
+    _service_test_command:
+      Alpine: /bin/sleep
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+      default: /usr/bin/sleep
     alice:
       name: Alice Appleworth
       telephone: 123-456-7890
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
-    _service_test_command:
-      default: /usr/bin/sleep
-      Alpine: /bin/sleep
-      Debian: /bin/sleep
-      Ubuntu-16: /bin/sleep
-      Ubuntu-18: /bin/sleep
-    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
-
-
-  pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=yes cache_valid_time=600
-      when: ansible_os_family == 'Debian'
-      changed_when: false
-
-  roles:
-    - role: buluma.multi  # Main
-    # - role: buluma.apache
+    service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-'' ~
+      ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
+      | default(_service_test_command[''default''])) }}'
+    users: null
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-multi/blob/master/molecule/default/prepare.yml):
 
 ```yaml
----
-- name: Prepare
-  hosts: all
-  become: true
+- become: true
   gather_facts: false
-
+  hosts: all
+  name: Prepare
   roles:
-    - role: buluma.bootstrap
-    # - role: buluma.systemd
-    # - role: buluma.core_dependencies
-    # - role: buluma.cron
-    # - role: buluma.service
-    # - role: buluma.python_pip
-    # - role: buluma.reboot
-    # - role: buluma.gitlab
-    # - role: buluma.apache
+  - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -74,103 +60,46 @@ Also see a [full explanation and example](https://buluma.github.io/how-to-use-th
 The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-multi/blob/master/defaults/main.yml):
 
 ```yaml
----
-apache_enablerepo: ""
+apache_allow_override: All
+apache_create_vhosts: true
+apache_enabled: true
+apache_enablerepo: ''
+apache_global_vhost_settings: 'DirectoryIndex index.php index.html
 
-apache_listen_ip: "*"
+  '
+apache_ignore_missing_ssl_certificate: true
+apache_listen_ip: '*'
 apache_listen_port: 80
 apache_listen_port_ssl: 443
-
-apache_create_vhosts: true
-apache_vhosts_filename: "vhosts.conf"
-apache_vhosts_template: "vhosts.conf.j2"
-
-# On Debian/Ubuntu, a default virtualhost is included in Apache's configuration.
-# Set this to `true` to remove that default.
-apache_remove_default_vhost: false
-
-apache_global_vhost_settings: |
-  DirectoryIndex index.php index.html
-
-apache_vhosts:
-  # Additional properties:
-  # 'serveradmin, serveralias, allow_override, options, extra_parameters'.
-  - servername: "local.dev"
-    documentroot: "/var/www/html"
-
-apache_allow_override: "All"
-apache_options: "-Indexes +FollowSymLinks"
-
-apache_vhosts_ssl: []
-# Additional properties:
-# 'serveradmin, serveralias, allow_override, options, extra_parameters'.
-# - servername: "local.dev",
-#   documentroot: "/var/www/html",
-#   certificate_file: "/path/to/certificate.crt",
-#   certificate_key_file: "/path/to/certificate.key",
-#   # Optional.
-#   certificate_chain_file: "/path/to/certificate_chain.crt"
-
-apache_ignore_missing_ssl_certificate: true
-
-apache_ssl_protocol: "All -SSLv2 -SSLv3"
-apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
-
-# Only used on Debian/Ubuntu.
-apache_mods_enabled:
-  - rewrite.load
-  - ssl.load
 apache_mods_disabled: []
-# Set initial apache state. Recommended values: `started` or `stopped`
-apache_state: started
-
-# Set initial apache service status. Recommended values: `yes` or `no`
-apache_enabled: true
-
-# Set apache state when configuration changes are made. Recommended values:
-# `restarted` or `reloaded`
-apache_restart_state: restarted
-
-# Apache package state; use `present` to make sure it's installed, or `latest`
-# if you want to upgrade or switch versions using a new repo.
+apache_mods_enabled:
+- rewrite.load
+- ssl.load
+apache_options: -Indexes +FollowSymLinks
 apache_packages_state: present
-
-ip_from_ec2: "10.0.0.1"
-
-new_ip: "10.0.0.3"
-
-new_port: 8081
-
+apache_remove_default_vhost: false
+apache_restart_state: restarted
+apache_ssl_cipher_suite: AES256+EECDH:AES256+EDH
+apache_ssl_protocol: All -SSLv2 -SSLv3
+apache_state: started
+apache_vhosts:
+- documentroot: /var/www/html
+  servername: local.dev
+apache_vhosts_filename: vhosts.conf
+apache_vhosts_ssl: []
+apache_vhosts_template: vhosts.conf.j2
 apt_autostart_state: enabled
-
-# defaults file for reboot
-
-# Some operating systems can determine if a reboot is required. This
-# parameter can be set to always reboot.
+ip_from_ec2: 10.0.0.1
+new_ip: 10.0.0.3
+new_port: 8081
 reboot_always: true
-
-# How long to wait before sending a reboot.
 reboot_delay: 5
-
-# Number of seconds to wait before checking if the machine is up.
+reboot_message: Ansible role buluma.reboot initiated a reboot.
 reboot_up_delay: 10
-
-# You can specify a message for rebooting, easier for auditing.
-reboot_message: "Ansible role buluma.reboot initiated a reboot."
-
-# defaults file for users
-
-# The location to store ssh keys for user
-users_ssh_key_directory: ssh_keys
-
-# The default shell if not overwritten.
-users_shell: /bin/bash
-
-# manage cron permissions via /etc/cron.allow
-users_cron_allow: true
-
-# should homedirectories be created?
 users_create_home: true
+users_cron_allow: true
+users_shell: /bin/bash
+users_ssh_key_directory: ssh_keys
 ```
 
 ## [Requirements](#requirements)

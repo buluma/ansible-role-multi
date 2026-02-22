@@ -1,33 +1,29 @@
----
-- name: Converge
+- become: true
+  gather_facts: true
   hosts: all
-  become: true
+  name: Converge
+  pre_tasks:
+  - apt: update_cache=yes cache_valid_time=600
+    changed_when: false
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  roles:
+  - role: buluma.multi
   strategy: free
-  gather_facts: yes
-
   vars:
-    users:
+    _service_test_command:
+      Alpine: /bin/sleep
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+      default: /usr/bin/sleep
     alice:
       name: Alice Appleworth
       telephone: 123-456-7890
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
-    _service_test_command:
-      default: /usr/bin/sleep
-      Alpine: /bin/sleep
-      Debian: /bin/sleep
-      Ubuntu-16: /bin/sleep
-      Ubuntu-18: /bin/sleep
-    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
-
-
-  pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=yes cache_valid_time=600
-      when: ansible_os_family == 'Debian'
-      changed_when: false
-
-  roles:
-    - role: buluma.multi  # Main
-    # - role: buluma.apache
+    service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-'' ~
+      ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
+      | default(_service_test_command[''default''])) }}'
+    users: null

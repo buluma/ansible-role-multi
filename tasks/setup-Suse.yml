@@ -3,17 +3,14 @@
   ansible.builtin.debug:
     msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
   when: ansible_default_ipv4.gateway is defined
-
 - name: setup-Suse | Get uptime information
   ansible.builtin.command: /usr/bin/uptime
   changed_when: false
   register: result
-
 - name: setup-Suse | Print return information from the previous task
   ansible.builtin.debug:
     var: result
     verbosity: 2
-
 - name: setup-Suse | Display all variables/facts known for a host
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
