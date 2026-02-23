@@ -12,47 +12,47 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-  - become: true
-    gather_facts: true
-    hosts: all
-    name: Converge
-    pre_tasks:
-      - apt: update_cache=yes cache_valid_time=600
-        changed_when: false
-        name: Update apt cache.
-        when: ansible_os_family == 'Debian'
-    roles:
-      - role: buluma.multi
-    strategy: free
-    vars:
-      _service_test_command:
-        Alpine: /bin/sleep
-        Debian: /bin/sleep
-        Ubuntu-16: /bin/sleep
-        Ubuntu-18: /bin/sleep
-        default: /usr/bin/sleep
-      alice:
-        name: Alice Appleworth
-        telephone: 123-456-7890
-      bob:
-        name: Bob Bananarama
-        telephone: 987-654-3210
-      service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-''
-        ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
-        | default(_service_test_command[''default''])) }}'
-      users:
+- become: true
+  gather_facts: true
+  hosts: all
+  name: Converge
+  pre_tasks:
+  - apt: update_cache=yes cache_valid_time=600
+    changed_when: false
+    name: Update apt cache.
+    when: ansible_os_family == 'Debian'
+  roles:
+  - role: buluma.multi
+  strategy: free
+  vars:
+    _service_test_command:
+      Alpine: /bin/sleep
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+      default: /usr/bin/sleep
+    alice:
+      name: Alice Appleworth
+      telephone: 123-456-7890
+    bob:
+      name: Bob Bananarama
+      telephone: 987-654-3210
+    service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-'' ~
+      ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
+      | default(_service_test_command[''default''])) }}'
+    users:
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-multi/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-  - become: true
-    gather_facts: false
-    hosts: all
-    name: Prepare
-    roles:
-      - role: buluma.bootstrap
+- become: true
+  gather_facts: false
+  hosts: all
+  name: Prepare
+  roles:
+  - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -74,8 +74,8 @@ apache_listen_port: 80
 apache_listen_port_ssl: 443
 apache_mods_disabled: []
 apache_mods_enabled:
-  - rewrite.load
-  - ssl.load
+- rewrite.load
+- ssl.load
 apache_options: -Indexes +FollowSymLinks
 apache_packages_state: present
 apache_remove_default_vhost: false
@@ -84,8 +84,8 @@ apache_ssl_cipher_suite: AES256+EECDH:AES256+EDH
 apache_ssl_protocol: All -SSLv2 -SSLv3
 apache_state: started
 apache_vhosts:
-  - documentroot: /var/www/html
-    servername: local.dev
+- documentroot: /var/www/html
+  servername: local.dev
 apache_vhosts_filename: vhosts.conf
 apache_vhosts_ssl: []
 apache_vhosts_template: vhosts.conf.j2
