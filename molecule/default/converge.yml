@@ -1,29 +1,30 @@
-- become: true
-  gather_facts: true
-  hosts: all
-  name: Converge
-  pre_tasks:
-  - apt: update_cache=yes cache_valid_time=600
-    changed_when: false
-    name: Update apt cache.
-    when: ansible_os_family == 'Debian'
-  roles:
-  - role: buluma.multi
-  strategy: free
-  vars:
-    _service_test_command:
-      Alpine: /bin/sleep
-      Debian: /bin/sleep
-      Ubuntu-16: /bin/sleep
-      Ubuntu-18: /bin/sleep
-      default: /usr/bin/sleep
-    alice:
-      name: Alice Appleworth
-      telephone: 123-456-7890
-    bob:
-      name: Bob Bananarama
-      telephone: 987-654-3210
-    service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-'' ~
-      ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
-      | default(_service_test_command[''default''])) }}'
-    users: null
+---
+  - become: true
+    gather_facts: true
+    hosts: all
+    name: Converge
+    pre_tasks:
+      - apt: update_cache=yes cache_valid_time=600
+        changed_when: false
+        name: Update apt cache.
+        when: ansible_os_family == 'Debian'
+    roles:
+      - role: buluma.multi
+    strategy: free
+    vars:
+      _service_test_command:
+        Alpine: /bin/sleep
+        Debian: /bin/sleep
+        Ubuntu-16: /bin/sleep
+        Ubuntu-18: /bin/sleep
+        default: /usr/bin/sleep
+      alice:
+        name: Alice Appleworth
+        telephone: 123-456-7890
+      bob:
+        name: Bob Bananarama
+        telephone: 987-654-3210
+      service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-''
+        ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
+        | default(_service_test_command[''default''])) }}'
+      users:
