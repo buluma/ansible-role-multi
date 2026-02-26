@@ -1,16 +1,17 @@
 ---
 dependencies: []
-
 galaxy_info:
-  role_name: multi
   author: buluma
   description: Apache 2.x for Linux.
+  galaxy_tags:
+    - web
+    - apache
+    - webserver
+    - html
+    - httpd
   license: Apache-2.0
-  min_ansible_version: 2.4
+  min_ansible_version: "2.4"
   platforms:
-    # - name: EL
-    #   versions:
-    #     - all
     - name: Fedora
       versions:
         - all
@@ -26,17 +27,10 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
-    - name: Archlinux
+    - name: ArchLinux
       versions:
         - all
     - name: Alpine
       versions:
         - all
-  galaxy_tags:
-    - web
-    - apache
-    - webserver
-    - html
-    - httpd
-
-allow_duplicates: true
+  role_name: multi

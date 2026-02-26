@@ -1,8 +1,7 @@
 ---
-- name: restart apache
+- name: Restart apache
   ansible.builtin.service:
     name: "{{ apache_service }}"
     state: "{{ apache_restart_state }}"
-
 - name: Test if connection still exists
   ansible.builtin.ping:
