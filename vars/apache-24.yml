@@ -1,5 +1,5 @@
 ---
-apache_default_vhost_filename: 000-default.conf
+apache_default_vhost_filename: "000-default.conf"
 apache_ports_configuration_items:
   - line: Listen {{ apache_listen_port }}
     regexp: "^Listen "

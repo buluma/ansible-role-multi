@@ -1,39 +1,17 @@
 ---
 apache_allow_override: All
-apache_create_vhosts: true
-apache_enabled: true
-apache_enablerepo: ""
 apache_global_vhost_settings: "DirectoryIndex index.php index.html\n"
 apache_ignore_missing_ssl_certificate: true
 apache_listen_ip: "*"
 apache_listen_port: 80
 apache_listen_port_ssl: 443
-apache_mods_disabled: []
-apache_mods_enabled:
-  - rewrite.load
-  - ssl.load
 apache_options: -Indexes +FollowSymLinks
-apache_packages_state: present
-apache_remove_default_vhost: false
 apache_restart_state: restarted
-apache_ssl_cipher_suite: AES256+EECDH:AES256+EDH
+apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
 apache_ssl_protocol: All -SSLv2 -SSLv3
-apache_state: started
 apache_vhosts:
   - documentroot: /var/www/html
     servername: local.dev
-apache_vhosts_filename: vhosts.conf
 apache_vhosts_ssl: []
-apache_vhosts_template: vhosts.conf.j2
 apt_autostart_state: enabled
-ip_from_ec2: 10.0.0.1
-new_ip: 10.0.0.3
-new_port: 8081
-reboot_always: true
-reboot_delay: 5
-reboot_message: Ansible role buluma.reboot initiated a reboot.
-reboot_up_delay: 10
-users_create_home: true
-users_cron_allow: true
-users_shell: /bin/bash
 users_ssh_key_directory: ssh_keys
