@@ -4,12 +4,12 @@
   hosts: all
   name: Converge
   pre_tasks:
-  - apt: update_cache=yes cache_valid_time=600
-    changed_when: false
-    name: Update apt cache.
-    when: ansible_os_family == 'Debian'
+    - apt: update_cache=yes cache_valid_time=600
+      changed_when: false
+      name: Update apt cache.
+      when: ansible_os_family == 'Debian'
   roles:
-  - role: buluma.multi
+    - role: buluma.multi
   strategy: free
   vars:
     _service_test_command:
@@ -24,7 +24,7 @@
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
-    service_test_command: '{{ _service_test_command[ansible_distribution ~ ''-'' ~
+    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~
       ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
-      | default(_service_test_command[''default''])) }}'
+      | default(_service_test_command['default'])) }}"
     users:
