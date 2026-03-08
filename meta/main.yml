@@ -24,9 +24,6 @@ galaxy_info:
     - name: Kali
       versions:
         - all
-    - name: opensuse
-      versions:
-        - all
     - name: ArchLinux
       versions:
         - all
