@@ -21,12 +21,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
-    - name: Kali
-      versions:
-        - all
-    - name: ArchLinux
-      versions:
-        - all
     - name: Alpine
       versions:
         - all
