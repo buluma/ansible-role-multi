@@ -38,7 +38,7 @@
 - name: configure-Debian | Collect only selected facts
   ansible.builtin.setup:
     filter:
-      - ansible_facts.distribution
+      - ansible_distribution
       - ansible_machine_id
       - ansible_*_mb
 - name: configure-Debian | Install required software

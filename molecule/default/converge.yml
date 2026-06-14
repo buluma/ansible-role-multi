@@ -7,7 +7,7 @@
     - apt: update_cache=yes cache_valid_time=600
       changed_when: false
       name: Update apt cache.
-      when: ansible_facts.os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
   roles:
     - role: buluma.multi
   strategy: free
@@ -24,7 +24,7 @@
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
-    service_test_command: "{{ _service_test_command[ansible_facts.distribution ~ '-' ~
-      ansible_facts.distribution_major_version] | default(_service_test_command[ansible_facts.os_family]
+    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~
+      ansible_distribution_major_version] | default(_service_test_command[ansible_facts['os_family']]
       | default(_service_test_command['default'])) }}"
     users:
