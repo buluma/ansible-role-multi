@@ -39,7 +39,7 @@
   ansible.builtin.setup:
     filter:
       - ansible_facts['distribution']
-      - ansible_machine_id
+      - ansible_facts['machine_id']
       - ansible_*_mb
 - name: configure-Debian | Install required software
   ansible.builtin.package:
