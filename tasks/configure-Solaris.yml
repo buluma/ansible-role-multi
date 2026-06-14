@@ -1,8 +1,8 @@
 ---
 - name: configure-Solaris | Print the gateway for each host when defined
   ansible.builtin.debug:
-    msg: System {{ inventory_hostname }} has gateway {{ ansible_facts.default_ipv4.gateway }}
-  when: ansible_facts.default_ipv4.gateway is defined
+    msg: System {{ inventory_hostname }} has gateway {{ ansible_facts['default_ipv4'].gateway }}
+  when: ansible_facts['default_ipv4'].gateway is defined
 - name: configure-Solaris | Display all variables/facts known for a host
   ansible.builtin.debug:
     var: hostvars[inventory_hostname]
