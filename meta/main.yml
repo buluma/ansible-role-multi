@@ -21,7 +21,4 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
-    - name: Alpine
-      versions:
-        - all
   role_name: multi
