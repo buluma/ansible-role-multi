@@ -12,15 +12,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- become: true
-  gather_facts: true
+- name: Converge
   hosts: all
-  name: Converge
+  become: true
+  gather_facts: true
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=600
       changed_when: false
       name: Update apt cache.
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
   roles:
     - role: buluma.multi
   strategy: free
@@ -37,8 +37,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     bob:
       name: Bob Bananarama
       telephone: 987-654-3210
-    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~
-      ansible_distribution_major_version] | default(_service_test_command[ansible_os_family]
+    service_test_command: "{{ _service_test_command[ansible_facts['distribution'] ~ '-' ~
+      ansible_facts['distribution_major_version']] | default(_service_test_command[ansible_facts['os_family']]
       | default(_service_test_command['default'])) }}"
     users:
 ```
@@ -47,10 +47,18 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- become: true
-  gather_facts: false
+- name: Prepare
   hosts: all
-  name: Prepare
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
+
   roles:
     - role: buluma.bootstrap
 ```
@@ -110,16 +118,16 @@ Here is an overview of related roles:
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
+This role has been tested on these [container images](https://hub.docker.com/u/buluma):
 
 |container|tags|
 |---------|----|
-|[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
-|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
-|[Alpine](https://hub.docker.com/r/robertdebock/alpine)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
 
-The minimum version of Ansible required is 2.4, tests have been done on:
+The minimum version of Ansible required is 2.12, tests have been done on:
 
 - The previous version.
 - The current version.
@@ -135,6 +143,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-### Get Help
-- Report issues: https://github.com/buluma/ansible-role-multi/issues/new
-- See docs: https://docs.ansible.com/collection/gallery/ansible-role-multi
