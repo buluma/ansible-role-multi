@@ -23,10 +23,7 @@
   loop: "{{ lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True) }}"
 - name: configure-Debian | Show remote_tmp setting for shell (sh) plugin
   ansible.builtin.debug:
-    cmd: '"remote_tmp", , )}}'
-    msg: '{{q("config",'
-    plugin_name: sh
-    plugin_type: shell
+    msg: "{{ q('config', 'remote_tmp', plugin_type='shell', plugin_name='sh') }}"
 - name: configure-Debian | Install iptables packages (Ubuntu)
   ansible.builtin.apt:
     name:

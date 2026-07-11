@@ -23,10 +23,7 @@
   loop: "{{ lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True) }}"
 - name: configure-RedHat | Show remote_tmp setting for shell (sh) plugin
   ansible.builtin.debug:
-    cmd: '"remote_tmp", , )}}'
-    msg: '{{q("config",'
-    plugin_name: sh
-    plugin_type: shell
+    msg: "{{ q('config', 'remote_tmp', plugin_type='shell', plugin_name='sh') }}"
 - name: configure-RedHat | Install iptables package (CentOS)
   ansible.builtin.package:
     name: iptables

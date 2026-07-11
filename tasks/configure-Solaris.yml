@@ -23,14 +23,8 @@
   loop: "{{ lookup('config', 'COLOR_OK', 'COLOR_CHANGED', 'COLOR_SKIP', wantlist=True) }}"
 - name: configure-Solaris | Show remote user and port for ssh connection
   ansible.builtin.debug:
-    cmd: '"remote_user", "port", , , )}}'
-    msg: '{{q("config",'
+    msg: "{{ q('config', 'remote_user', 'port', plugin_type='connection', plugin_name='ssh') }}"
     on_missing: skip
-    plugin_name: ssh
-    plugin_type: connection
 - name: configure-Solaris | Show remote_tmp setting for shell (sh) plugin
   ansible.builtin.debug:
-    cmd: '"remote_tmp", , )}}'
-    msg: '{{q("config",'
-    plugin_name: sh
-    plugin_type: shell
+    msg: "{{ q('config', 'remote_tmp', plugin_type='shell', plugin_name='sh') }}"
